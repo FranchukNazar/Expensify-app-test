@@ -162,40 +162,40 @@ class ExpensifyApp extends Component {
 
     handleTotalSpend = (currency) => {
 
-        // const {expenses} = this.state;
-        const expenses = [
-            {
-                date: '2017-3-4',
-                products: [
-                    {
-                        product: 'beer',
-                        amount: 30,
-                        currency: 'UAH'
-                    },
-                    {
-                        product: 'jogurt',
-                        amount: 10,
-                        currency: 'USD'
-                    }
-                ]
-            },
-            {
-                date: '2017-3-3',
-                products: [
-                    {
-                        product: 'beer',
-                        amount: 30,
-                        currency: 'UAH'
-                    },
-                    {
-                        product: 'jogurt',
-                        amount: 10,
-                        currency: 'USD'
-                    }
-                ]
-            }
-
-        ];
+         const {expenses} = this.state;
+        // const expenses = [
+        //     {
+        //         date: '2017-3-4',
+        //         products: [
+        //             {
+        //                 product: 'beer',
+        //                 amount: 30,
+        //                 currency: 'UAH'
+        //             },
+        //             {
+        //                 product: 'jogurt',
+        //                 amount: 10,
+        //                 currency: 'USD'
+        //             }
+        //         ]
+        //     },
+        //     {
+        //         date: '2017-3-3',
+        //         products: [
+        //             {
+        //                 product: 'beer',
+        //                 amount: 30,
+        //                 currency: 'UAH'
+        //             },
+        //             {
+        //                 product: 'jogurt',
+        //                 amount: 10,
+        //                 currency: 'USD'
+        //             }
+        //         ]
+        //     }
+        //
+        // ];
 
 /*        function readData() {
             let url = `http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`;
@@ -211,7 +211,7 @@ class ExpensifyApp extends Component {
         // console.log(main());
 
 
-        async function readData() {
+      let readData = async function  () {
             let response  = await fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
             let currencyObj = await response.json();
             let ratesOfCurrency = currencyObj.rates;
@@ -223,11 +223,12 @@ class ExpensifyApp extends Component {
 
             }, 0);
             console.log(totalAmount);
+            console.log(this);
             this.setState({totalAmount}, () => {
                 console.log(this.state)
             });
 
-        }
+        }.bind(this);
         readData();
 
 
@@ -254,6 +255,7 @@ class ExpensifyApp extends Component {
             <button onClick={this.handleParse}>Submit</button>
             <div>
                 {this.handleRenderList()}
+
             </div>
 
         </div>;
