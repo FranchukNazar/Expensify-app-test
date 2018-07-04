@@ -42,11 +42,11 @@ class ExpensifyApp extends Component {
         command: '',
         expenses: [],
         totalAmount: 0
-    }
+    };
 
     handleOnChange = (e) => {
         this.setState({command: e.target.value});
-    }
+    };
 
     handleParse = () => {
         let {command} = this.state;
@@ -162,21 +162,90 @@ class ExpensifyApp extends Component {
 
     handleTotalSpend = (currency) => {
 
-        const {expenses} = this.state;
-        let url = `http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`;
-        fetch(url).then(response => response.json()).then(data => console.log(data)).catch(alert);
+        // const {expenses} = this.state;
+        const expenses = [
+            {
+                date: '2017-3-4',
+                products: [
+                    {
+                        product: 'beer',
+                        amount: 30,
+                        currency: 'UAH'
+                    },
+                    {
+                        product: 'jogurt',
+                        amount: 10,
+                        currency: 'USD'
+                    }
+                ]
+            },
+            {
+                date: '2017-3-3',
+                products: [
+                    {
+                        product: 'beer',
+                        amount: 30,
+                        currency: 'UAH'
+                    },
+                    {
+                        product: 'jogurt',
+                        amount: 10,
+                        currency: 'USD'
+                    }
+                ]
+            }
+
+        ];
+
+/*        function readData() {
+            let url = `http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`;
+           return fetch(url).then(response => response.json()).catch(alert);
+        }
+
+        async function main() {
+            let currensyObject = await readData();
+            return currensyObject.rates;
+        }*/
 
 
-        let totalAmount = expenses.reduce((sum, current) => {
+        // console.log(main());
+
+
+        async function readData() {
+            let response  = await fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
+            let currencyObj = await response.json();
+            let ratesOfCurrency = currencyObj.rates;
+            let totalAmount = expenses.reduce((sum, current) => {
+                return sum + current.products.reduce((sum, current) => {
+                    console.log(current.amount);
+                    return sum + parseFloat(current.amount)/parseFloat(ratesOfCurrency[current.currency]);
+                }, 0);
+
+            }, 0);
+            console.log(totalAmount);
+            this.setState({totalAmount}, () => {
+                console.log(this.state)
+            });
+
+        }
+        readData();
+
+
+         // let ratesOfCurrency = {
+         //     'UAH': 30,
+         //     'USD': 2
+         // };
+
+/*        let totalAmount = expenses.reduce((sum, current) => {
             return sum + current.products.reduce((sum, current) => {
                 console.log(current.amount);
-                return sum + parseFloat(current.amount);
+                return sum + parseFloat(current.amount)/parseFloat(ratesOfCurrency[current.currency]);
             }, 0);
 
         }, 0);
         this.setState({totalAmount}, () => {
             console.log(this.state)
-        });
+        });*/
     };
 
     render() {
