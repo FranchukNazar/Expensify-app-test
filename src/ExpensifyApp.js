@@ -41,7 +41,9 @@ class ExpensifyApp extends Component {
     state = {
         command: '',
         expenses: [],
-        totalAmount: 0
+        totalAmount: -1,
+        currency: '',
+        isOpenList: true
     };
 
     handleOnChange = (e) => {
@@ -49,30 +51,28 @@ class ExpensifyApp extends Component {
     };
 
     handleParse = () => {
-        let {command} = this.state;
+        const {command} = this.state;
         let commandArray = command.split(' ').filter(item => item);
-        let nameOfCommand = commandArray[0];
-        switch (nameOfCommand) {
+        let commandName = commandArray[0];
+        switch (commandName) {
             case 'add':
-                alert('add');
                 let product = commandArray.slice(4).join(' ');
                 let amount = parseFloat(commandArray[2]);
                 this.handleAdd(commandArray[1], amount, commandArray[3], product);
                 break;
             case 'list':
-                alert('list');
+                this.setState({isOpenList: true});
                 this.handleSortList();
                 break;
             case 'clear':
-                alert('clear');
                 this.handleDelete(commandArray[1]);
                 break;
             case 'total':
-                alert('total');
+                this.setState({isOpenList: false});
                 this.handleTotalSpend(commandArray[1]);
                 break;
             default:
-                alert('You write command wrong');
+                alert('You write wrong command');
         }
 
     };
@@ -144,10 +144,10 @@ class ExpensifyApp extends Component {
 
         return expenses.map((expense, index) => {
             return (
-                <div key={index + 1000}>
+                <div key={index}>
                     <h4 key={index}>{expense.date}</h4>
                     {expense.products.map((nameOfExpense, index) => <p
-                        key={index + 100}>{`${nameOfExpense.product} ${nameOfExpense.amount} ${nameOfExpense.currency}`}</p>)}
+                        key={index}>{`${nameOfExpense.product} ${nameOfExpense.amount} ${nameOfExpense.currency}`}</p>)}
                 </div>
             );
         });
@@ -160,9 +160,9 @@ class ExpensifyApp extends Component {
         });
     };
 
-    handleTotalSpend = (currency) => {
-
-         const {expenses} = this.state;
+    handleTotalSpend = (currency = 'EUR') => {
+        this.setState({currency});
+        const {expenses} = this.state;
         // const expenses = [
         //     {
         //         date: '2017-3-4',
@@ -211,16 +211,16 @@ class ExpensifyApp extends Component {
         // console.log(main());
 
 
-      let readData = async function  () {
+
+        let readData = async function  () {
             let response  = await fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
             let currencyObj = await response.json();
             let ratesOfCurrency = currencyObj.rates;
             let totalAmount = expenses.reduce((sum, current) => {
-                return sum + current.products.reduce((sum, current) => {
-                    console.log(current.amount);
-                    return sum + parseFloat(current.amount)/parseFloat(ratesOfCurrency[current.currency]);
-                }, 0);
-
+                current.products.forEach((item) => {
+                    sum += parseFloat(item.amount)/parseFloat(ratesOfCurrency[item.currency]);
+                });
+                return sum;
             }, 0);
             console.log(totalAmount);
             console.log(this);
@@ -250,11 +250,13 @@ class ExpensifyApp extends Component {
     };
 
     render() {
-        return <div className="ExpensifyApp">
+        const {totalAmount, currency, isOpenList} = this.state;
+        return <div className="expensify-app">
             <input type="text" onChange={this.handleOnChange}/>
             <button onClick={this.handleParse}>Submit</button>
             <div>
-                {this.handleRenderList()}
+                {isOpenList ? this.handleRenderList() : ''}
+                {(totalAmount >= 0 && !isOpenList) ? `${totalAmount} ${currency} ` : ''}
 
             </div>
 
