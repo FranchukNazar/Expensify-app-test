@@ -96,19 +96,20 @@ class InputExpenses extends Component {
     handleTotalSpend = (currency) => {
         const {expenses, handleChangeCurrency, handleChangeTotalAmount} = this.props;
         handleChangeCurrency(currency);
-        let readData = async function  () {
-            let response  = await fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
-            let currencyObj = await response.json();
-            let ratesOfCurrency = currencyObj.rates;
-            let totalAmount = expenses.reduce((sum, current) => {
-                current.products.forEach((item) => {
-                    sum += parseFloat(item.amount)/parseFloat(ratesOfCurrency[item.currency]);
-                });
-                return sum;
-            }, 0);
-            handleChangeTotalAmount(totalAmount);
-        };
-        readData();
+
+           fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`).then((response) => response.json()).then(currencyObj => {
+               let ratesOfCurrency = currencyObj.rates;
+               let totalAmount = expenses.reduce((sum, current) => {
+                   current.products.forEach((item) => {
+                       sum += parseFloat(item.amount)/parseFloat(ratesOfCurrency[item.currency]);
+                   });
+                   return sum;
+               }, 0);
+
+               return (
+                   handleChangeTotalAmount(totalAmount)
+               )
+           })
 
     };
 
