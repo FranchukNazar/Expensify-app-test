@@ -6,7 +6,8 @@ class InputExpenses extends Component {
         this.props.handleOnChange(e.target.value);
     };
 
-    handleParse = () => {
+    handleParse = (e) => {
+        e.preventDefault();
         const {command} = this.props;
         let commandArray = command.split(' ').filter(item => item);
         let commandName = commandArray[0];
@@ -113,9 +114,9 @@ class InputExpenses extends Component {
 
     render () {
         return (
-            <form>
-                    <input type="text" onChange={this.handleOnChange}/>
-                    <button onClick={this.handleParse}>Submit</button>
+            <form action="" onSubmit={this.handleParse}>
+                <input type="text" onChange={this.handleOnChange}/>
+                <input type="submit" value="Submit"/>
             </form>
         )
     }
