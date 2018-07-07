@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-
+import InputExpenses from './InputExpenses';
+import OutputExpenses from './OutputExpenses';
 
 /*
 const expenses = [
@@ -163,55 +164,6 @@ class ExpensifyApp extends Component {
     handleTotalSpend = (currency = 'EUR') => {
         this.setState({currency});
         const {expenses} = this.state;
-        // const expenses = [
-        //     {
-        //         date: '2017-3-4',
-        //         products: [
-        //             {
-        //                 product: 'beer',
-        //                 amount: 30,
-        //                 currency: 'UAH'
-        //             },
-        //             {
-        //                 product: 'jogurt',
-        //                 amount: 10,
-        //                 currency: 'USD'
-        //             }
-        //         ]
-        //     },
-        //     {
-        //         date: '2017-3-3',
-        //         products: [
-        //             {
-        //                 product: 'beer',
-        //                 amount: 30,
-        //                 currency: 'UAH'
-        //             },
-        //             {
-        //                 product: 'jogurt',
-        //                 amount: 10,
-        //                 currency: 'USD'
-        //             }
-        //         ]
-        //     }
-        //
-        // ];
-
-/*        function readData() {
-            let url = `http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`;
-           return fetch(url).then(response => response.json()).catch(alert);
-        }
-
-        async function main() {
-            let currensyObject = await readData();
-            return currensyObject.rates;
-        }*/
-
-
-        // console.log(main());
-
-
-
         let readData = async function  () {
             let response  = await fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
             let currencyObj = await response.json();
@@ -224,42 +176,23 @@ class ExpensifyApp extends Component {
             }, 0);
             console.log(totalAmount);
             console.log(this);
-            this.setState({totalAmount}, () => {
-                console.log(this.state)
-            });
+            this.setState({totalAmount});
 
         }.bind(this);
         readData();
 
-
-         // let ratesOfCurrency = {
-         //     'UAH': 30,
-         //     'USD': 2
-         // };
-
-/*        let totalAmount = expenses.reduce((sum, current) => {
-            return sum + current.products.reduce((sum, current) => {
-                console.log(current.amount);
-                return sum + parseFloat(current.amount)/parseFloat(ratesOfCurrency[current.currency]);
-            }, 0);
-
-        }, 0);
-        this.setState({totalAmount}, () => {
-            console.log(this.state)
-        });*/
     };
 
     render() {
         const {totalAmount, currency, isOpenList} = this.state;
         return <div className="expensify-app">
-            <input type="text" onChange={this.handleOnChange}/>
-            <button onClick={this.handleParse}>Submit</button>
-            <div>
-                {isOpenList ? this.handleRenderList() : ''}
-                {(totalAmount >= 0 && !isOpenList) ? `${totalAmount} ${currency} ` : ''}
 
-            </div>
+            <InputExpenses handleOnChange={this.handleOnChange} handleParse={this.handleParse}/>
 
+            {/*<input type="text" onChange={this.handleOnChange}/>*/}
+            {/*<button onClick={this.handleParse}>Submit</button>*/}
+
+            <OutputExpenses totalAmount={totalAmount} currency={currency} isOpenList={isOpenList} handleRenderList={this.handleRenderList}/>
         </div>;
     }
 }
