@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import InputExpenses from '../Components/InputExpenses';
-import OutputExpenses from '../Components/OutputExpenses';
+import InputExpenses from '../components/InputExpenses';
+import OutputExpenses from '../components/OutputExpenses';
 
 
 class ExpensifyApp extends Component {
