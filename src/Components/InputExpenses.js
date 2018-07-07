@@ -114,8 +114,8 @@ class InputExpenses extends Component {
     render () {
         return (
             <form>
-                <input type="text" onChange={this.handleOnChange}/>
-                <button onClick={this.handleParse}>Submit</button>
+                    <input type="text" onChange={this.handleOnChange}/>
+                    <button onClick={this.handleParse}>Submit</button>
             </form>
         )
     }
