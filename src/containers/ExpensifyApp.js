@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import '../index.css';
 import OutputExpenses from './OutputExpenses';
 import ExpensesForm from "../components/ExpensesForm";
 
@@ -102,7 +102,7 @@ class ExpensifyApp extends Component {
     handleTotalSpend = async (currency) => {
         const {expenses} = this.state;
         this.setState({currency});
-        let response = await fetch(`http://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
+        let response = await fetch(`https://data.fixer.io/api/latest?access_key=9363cdb07d0cb3b269fb3ee1a8b2e6d7&base=${currency}`);
         let currencyObj = await response.json();
         let ratesOfCurrency = currencyObj.rates;
         let totalAmount = expenses.reduce((sum, current) => {

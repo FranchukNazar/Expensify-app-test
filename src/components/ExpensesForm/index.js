@@ -21,7 +21,7 @@ class ExpensesForm extends Component {
         return (
             <form onSubmit={this.handleSubmit} className={'expenses-form'}>
                 <input type="text" onChange={this.handleOnChange} value={value} className={'expenses-form-text'} placeholder={'write your command and expense'}/>
-                <input type="submit" value="Submit" className={'expenses-form-submit'}/>
+                <input type="submit" value="Run" className={'expenses-form-submit'}/>
             </form>
         );
     }
