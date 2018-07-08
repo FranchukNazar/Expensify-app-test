@@ -7,49 +7,49 @@ User can enter the command and see the results of it's execution.
 
 ### Scripts
 
- **yarn start** * run webpack and start server
+ **yarn start**  run webpack and start server
 
 
 ### Commands for App
 
- **add** * adds expense entry to the list of users expenses
+ **add** — adds expense entry to the list of users expenses
 
- **add 2017-03-22 12 USD Jogurt** - example of command where
+ **add 2017-03-22 12 USD Jogurt** — example of command where
 
- add * command
+ add — command
 
- 2017-03-22 - date when expense occured
+ 2017-03-22 — date when expense occured
 
- 12 - is an amount
+ 12 — is an amount
 
- USD - the currency in which expense occured
+ USD — the currency in which expense occured
 
- Jogurt - is the name of prouct
-
-
-
- **list** * shows the list of all expenses sorted by date
-
-  **list** - example of command
+ Jogurt — is the name of prouct
 
 
 
- **clear** * removes all expenses for specified date
+ **list** — shows the list of all expenses sorted by date
 
-  **clear 2017-03-22** - example of command where
-
-  2017-02-33 - is the date for which all expenses should be removed
+  **list** — example of command
 
 
 
- **total** * calculate the total amount of spent money and present it to user in specified currency
+ **clear** — removes all expenses for specified date
 
- **total EUR** - example of command where
+  **clear 2017-03-22** — example of command where
 
- EUR - is the currency in which total amount of expenses should be presented
+  2017-02-33 — is the date for which all expenses should be removed
 
 
- ## Technologies
+
+ **total** — calculate the total amount of spent money and present it to user in specified currency
+
+ **total EUR** — example of command where
+
+ EUR — is the currency in which total amount of expenses should be presented
+
+
+ ### Technologies
 
  * ES6
 
