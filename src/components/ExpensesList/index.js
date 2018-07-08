@@ -6,10 +6,10 @@ class ExpensesList extends Component {
         const {expenses} = this.props;
         return expenses.map((expense, index) => {
             return (
-                <div key={index}>
+                <div key={index} className={'expense-date'}>
                     <h4 key={index}>{expense.date}</h4>
                     {expense.products.map((nameOfExpense, index) => <p
-                        key={index}>{`${nameOfExpense.product} ${nameOfExpense.amount} ${nameOfExpense.currency}`}</p>)}
+                        key={index} className={'expense-product'}>{`${nameOfExpense.product} ${nameOfExpense.amount} ${nameOfExpense.currency}`}</p>)}
                 </div>
             );
         });

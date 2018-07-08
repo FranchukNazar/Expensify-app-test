@@ -6,9 +6,9 @@ class OutputExpenses extends Component {
     render () {
         const {isOpenList, totalAmount, expenses, currency} = this.props;
         return (
-            <div>
+            <div className={'expenses-list'}>
                 {isOpenList && <ExpensesList expenses={expenses}/>}
-                {(totalAmount >= 0 && !isOpenList) ? `${totalAmount.toFixed(2) } ${currency}` : ''}
+                <p className={'expenses-amount'}> {(totalAmount >= 0 && !isOpenList) ? `Spend in total : ${totalAmount.toFixed(2) } ${currency}` : ''}</p>
             </div>
         )
     }

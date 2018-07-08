@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../App.css';
 import OutputExpenses from './OutputExpenses';
 import ExpensesForm from "../components/ExpensesForm";
 
@@ -116,6 +117,7 @@ class ExpensifyApp extends Component {
     render() {
         const {totalAmount, currency, isOpenList, expenses} = this.state;
         return <div className="expensify-app">
+            <h1 className={'header'}>EXPENSIFY APP</h1>
             <ExpensesForm handleSubmit={this.handleParse} />
             <OutputExpenses totalAmount={totalAmount}
                             currency={currency}

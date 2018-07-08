@@ -19,9 +19,9 @@ class ExpensesForm extends Component {
     render() {
         const {value} = this.state;
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" onChange={this.handleOnChange} value={value}/>
-                <input type="submit" value="Submit"/>
+            <form onSubmit={this.handleSubmit} className={'expenses-form'}>
+                <input type="text" onChange={this.handleOnChange} value={value} className={'expenses-form-text'} placeholder={'write your command and expense'}/>
+                <input type="submit" value="Submit" className={'expenses-form-submit'}/>
             </form>
         );
     }
