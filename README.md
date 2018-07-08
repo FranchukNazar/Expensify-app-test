@@ -5,48 +5,27 @@
 Application alllows user to track how much money he spent.
 User can enter the command and see the results of it's execution.
 
-## Scripts
+---
 
- **yarn start**  run webpack and start server
-
-
-## Commands for App
-
- ***add*** — adds expense entry to the list of users expenses
-
- ***add 2017-03-22 12 USD Jogurt*** — example of command where
-
- add — command
-
- 2017-03-22 — date when expense occured
-
- 12 — is an amount
-
- USD — the currency in which expense occured
-
- Jogurt — is the name of prouct
+## How to run
 
 
+* clone git repository with command in terminal `git clone`;
 
- ***list*** — shows the list of all expenses sorted by date
+* install dependencies with command in terminal `yarn install`;
 
-  ***list*** — example of command
+* run webpack and start server with command in terminal `yarn start`;
 
+---
 
+## Supported commands
 
- ***clear*** — removes all expenses for specified date
-
-  ***clear 2017-03-22*** — example of command where
-
-  2017-02-33 — is the date for which all expenses should be removed
-
-
-
- ***total*** — calculate the total amount of spent money and present it to user in specified currency
-
- ***total EUR*** — example of command where
-
- EUR — is the currency in which total amount of expenses should be presented
+| Command | Description of command | Example | Description of parameters|
+|:---|:---|:---|:---|
+| `add` | adds expense entry to the list of users expenses | `add 2017-03-22 12 USD Jogurt` |  First parameter `add` — command; Second parameter `2017-03-22` — date when expense occured (year, month  `01-12`, day `01-30`); Third parameter `12` — is an amount; Forth parameter `USD` — the currency in which expense occured ; Fifth parameter `Jogurt` — is the name of product|
+| `list` |  shows the list of all expenses sorted by date |  `list` | One parameter `list` — command |
+| `clear` | removes all expenses for specified date | `clear 2017-03-22` | First parameter `clear` — command; Second parameter `2017-03-22` — is the date for which all expenses should be removed |
+| `total` | calculate the total amount of spent money and present it to user in specified currency | `total EUR` |First parameter `total` — command; Second parameter `EUR` — is the currency in which total amount of expenses should be presented; Only EUR is supported because of paid account in [fixer.io](https://fixer.io/)  |
 
 
 
@@ -57,4 +36,8 @@ User can enter the command and see the results of it's execution.
  * React.js
 
  * Webpack
+
+ * Fetch
+
+ * CSS
 

@@ -8,7 +8,7 @@ class OutputExpenses extends Component {
         return (
             <div className={'expenses-list'}>
                 {isOpenList && <ExpensesList expenses={expenses}/>}
-                <p className={'expenses-amount'}> {(totalAmount >= 0 && !isOpenList) ? `Spend in total : ${totalAmount.toFixed(2) } ${currency}` : ''}</p>
+                <p className={'expenses-amount'}> {(totalAmount >= 0 && !isOpenList) ? `Total : ${totalAmount.toFixed(2) } ${currency}` : ''}</p>
             </div>
         )
     }
