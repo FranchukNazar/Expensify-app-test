@@ -5,12 +5,22 @@
   "dependencies": {
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-test-renderer": "^16.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom ",
+    "testJest": "jest",
+    "eject": "react-scripts eject",
+    "testMocha": "mocha './src/**/*.test.js' --compilers js:babel-core/register"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.0.2",
+    "react-addons-test-utils": "^15.6.2",
+    "react-scripts": ""
   }
 }

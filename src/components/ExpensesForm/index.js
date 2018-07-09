@@ -11,7 +11,7 @@ class ExpensesForm extends Component {
         this.setState({value: e.target.value});
     };
     handleSubmit = (e) => {
-        e.preventDefault();
+        e && e.preventDefault();
         const {value} = this.state;
         const {handleSubmit} = this.props;
         handleSubmit(value);

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../index.css';
 import OutputExpenses from './OutputExpenses';
-import ExpensesForm from "../components/ExpensesForm";
+import { ExpensesForm } from "../components";
 
 
 class ExpensifyApp extends Component {
