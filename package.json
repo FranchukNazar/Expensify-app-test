@@ -11,10 +11,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom ",
-    "testJest": "jest",
-    "eject": "react-scripts eject",
-    "testMocha": "mocha './src/**/*.test.js' --compilers js:babel-core/register"
+    "test": "react-scripts test --env=jsdom "
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.0",

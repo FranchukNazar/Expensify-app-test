@@ -13,6 +13,7 @@ class ExpensifyApp extends Component {
     };
 
     handleParse = (command) => {
+    // ^(add|clear|list|total) \d{4}-\d{2}-\d{2} \d+ [A-Z]+ [A-Za-z\ \,\.]+
         let commandArray = command.split(' ').filter(item => item);
         let commandName = commandArray[0];
         let isOpenList = true;
